@@ -19,8 +19,6 @@ import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.SpeechResult;
 import edu.cmu.sphinx.api.StreamSpeechRecognizer;
 
-import javax.swing.*;
-
 public class Main extends Application implements EventHandler<ActionEvent> {
 
     Button recordBtn;
@@ -56,13 +54,11 @@ public class Main extends Application implements EventHandler<ActionEvent> {
                 System.out.println("results: ");
                 System.out.println(result.getHypothesis());
                 recognizer.stopRecognition();
-
             }else{
                 //start recording
                 isRecording = true;
                 recordBtn.setText("Stop");
                 recognizer.startRecognition(true);
-
             }
         }
     }
