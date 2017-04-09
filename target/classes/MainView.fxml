@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+
+<?import javafx.scene.text.Text?>
+<GridPane fx:controller="Application"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <Button text="Recognize" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#handleReconButton"> </Button>
+    <Text fx:id="recognizedText" text="Recognized text: ---" GridPane.columnIndex="0" GridPane.rowIndex="1"> </Text>
+</GridPane>
