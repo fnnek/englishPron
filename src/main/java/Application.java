@@ -23,12 +23,13 @@ public class Application extends javafx.application.Application{
     private Text recognizedText;
 
     @FXML protected void handleReconButton(ActionEvent event){
+        recognizedText.setText("Wait...");
         try {
 
 
             //LiveSpeechRecognizer recognizer = new LiveSpeechRecognizer(configuration);
 // Start recognition process pruning previously cached data.
-            recognizer.startRecognition(true);
+            recognizer.startRecognition(false);
             SpeechResult result;
             if ((result = recognizer.getResult()) != null) {
                 System.out.format("Hypothesis: %s\n", result.getHypothesis());
@@ -66,6 +67,7 @@ public class Application extends javafx.application.Application{
 // Set language model.
         configuration.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
         recognizer = new LiveSpeechRecognizer(configuration);
+
         launch(arg);
         /*Configuration configuration = new Configuration();
 
