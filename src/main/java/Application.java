@@ -12,36 +12,49 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.io.*;
+import javax.sound.sampled.*;
+import edu.cmu.sphinx.api.StreamSpeechRecognizer;
 
 import java.io.IOException;
 
 public class Application extends javafx.application.Application{
 
     private static Configuration configuration;
-    private static LiveSpeechRecognizer recognizer;
-    @FXML
-    private Text recognizedText;
+    //private static LiveSpeechRecognizer recognizer;
+    private static File audioFile;
+    private static AudioFormat audioFormat;
+    private static TargetDataLine targetDataLine;
+    private static StreamSpeechRecognizer recognizer;
+    @FXML private Text recognizedText;
+    @FXML private Text info;
 
-    @FXML protected void handleReconButton(ActionEvent event){
-        recognizedText.setText("Wait...");
+    @FXML protected void handleStartButton(ActionEvent event){
+        recognizedText.setText("Speak now...");
+        captureAudio();
+
+    }
+
+    @FXML protected void handleStopButton(ActionEvent event) {
+
+        targetDataLine.stop();
+        targetDataLine.close();
         try {
 
+            InputStream stream = new FileInputStream(audioFile);
+            //recognizedText.setText("Wait, I'm thinking...");
+            recognizer.startRecognition(stream);
 
-            //LiveSpeechRecognizer recognizer = new LiveSpeechRecognizer(configuration);
-// Start recognition process pruning previously cached data.
-            recognizer.startRecognition(false);
             SpeechResult result;
+
             if ((result = recognizer.getResult()) != null) {
-                System.out.format("Hypothesis: %s\n", result.getHypothesis());
-                recognizedText.setText("Recognized words: " + result.getHypothesis());
+                recognizedText.setText("You said: " + result.getHypothesis());
+                System.out.println("Hypothesis: " + result.getHypothesis());
             }
-// Pause recognition process. It can be resumed then with startRecognition(false).
             recognizer.stopRecognition();
-
-        }catch (Exception e) {
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
     }
 
 
@@ -62,32 +75,65 @@ public class Application extends javafx.application.Application{
 
         // Set path to acoustic model.
         configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-// Set path to dictionary.
+        // Set path to dictionary.
         configuration.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
-// Set language model.
+        // Set language model.
         configuration.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
-        recognizer = new LiveSpeechRecognizer(configuration);
+        recognizer = new StreamSpeechRecognizer(configuration);
 
         launch(arg);
-        /*Configuration configuration = new Configuration();
 
-// Set path to acoustic model.
-        configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-// Set path to dictionary.
-        configuration.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
-// Set language model.
-        configuration.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
 
-        LiveSpeechRecognizer recognizer = new LiveSpeechRecognizer(configuration);
-// Start recognition process pruning previously cached data.
-        recognizer.startRecognition(true);
-        SpeechResult result;
-        while ((result = recognizer.getResult()) != null) {
-            System.out.format("Hypothesis: %s\n", result.getHypothesis());
+    }
+
+    private void captureAudio(){
+        try{
+            audioFormat = getAudioFormat();
+            DataLine.Info dataLineInfo =
+                    new DataLine.Info(
+                            TargetDataLine.class,
+                            audioFormat);
+            targetDataLine = (TargetDataLine)
+                    AudioSystem.getLine(dataLineInfo);
+            new CaptureThread().start();
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.exit(0);
         }
-// Pause recognition process. It can be resumed then with startRecognition(false).
-        recognizer.stopRecognition();
-        */
+    }
 
+    private AudioFormat getAudioFormat(){
+        float sampleRate = 8000.0F;
+        int sampleSizeInBits = 16;
+        int channels = 1;
+        boolean signed = true;
+        boolean bigEndian = false;
+        return new AudioFormat(sampleRate,
+                sampleSizeInBits,
+                channels,
+                signed,
+                bigEndian);
+    }
+
+    class CaptureThread extends Thread {
+        public void run() {
+            AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
+            audioFile = new File("junk.wav");;
+
+            try{
+                targetDataLine.open(audioFormat);
+                targetDataLine.start();
+                AudioSystem.write(
+                        new AudioInputStream(targetDataLine),
+                        fileType,
+                        audioFile);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+
+
+
+        }
     }
 }

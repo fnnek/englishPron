@@ -6,6 +6,8 @@
 <?import javafx.scene.text.Text?>
 <GridPane fx:controller="Application"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-    <Button text="Recognize" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#handleReconButton"> </Button>
-    <Text fx:id="recognizedText" text="Recognized text: ---" GridPane.columnIndex="0" GridPane.rowIndex="1"> </Text>
+    <Button text="Start" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#handleStartButton"> </Button>
+    <Button text="Stop" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#handleStopButton"> </Button>
+    <Text fx:id="recognizedText" text="Click start button" GridPane.columnIndex="0" GridPane.rowIndex="1"> </Text>
+    <Text fx:id="info" text="..." GridPane.columnIndex="0" GridPane.rowIndex="2"> </Text>
 </GridPane>
