@@ -3,13 +3,13 @@
  */
 
 import edu.cmu.sphinx.api.Configuration;
-import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.*;
@@ -21,16 +21,18 @@ import java.io.IOException;
 public class Application extends javafx.application.Application{
 
     private static Configuration configuration;
-    //private static LiveSpeechRecognizer recognizer;
     private static File audioFile;
     private static AudioFormat audioFormat;
     private static TargetDataLine targetDataLine;
     private static StreamSpeechRecognizer recognizer;
     @FXML private Text recognizedText;
-    @FXML private Text info;
+    @FXML private Button startB;
+    @FXML private Button stopB;
 
     @FXML protected void handleStartButton(ActionEvent event){
         recognizedText.setText("Speak now...");
+        startB.setDisable(true);
+        stopB.setDisable(false);
         captureAudio();
 
     }
@@ -39,28 +41,17 @@ public class Application extends javafx.application.Application{
 
         targetDataLine.stop();
         targetDataLine.close();
-        try {
+        recognizedText.setText("Wait, I'm thinking...");
 
-            InputStream stream = new FileInputStream(audioFile);
-            //recognizedText.setText("Wait, I'm thinking...");
-            recognizer.startRecognition(stream);
-
-            SpeechResult result;
-
-            if ((result = recognizer.getResult()) != null) {
-                recognizedText.setText("You said: " + result.getHypothesis());
-                System.out.println("Hypothesis: " + result.getHypothesis());
-            }
-            recognizer.stopRecognition();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+       new RecognizeThread().start();
+        startB.setDisable(false);
+        stopB.setDisable(true);
     }
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("StartView.fxml"));
         primaryStage.setTitle("engPron");
         primaryStage.setScene(new Scene(root, 400, 375));
 
@@ -103,9 +94,9 @@ public class Application extends javafx.application.Application{
     }
 
     private AudioFormat getAudioFormat(){
-        float sampleRate = 8000.0F;
+        float sampleRate = 16000.0F;
         int sampleSizeInBits = 16;
-        int channels = 1;
+        int channels = 2;
         boolean signed = true;
         boolean bigEndian = false;
         return new AudioFormat(sampleRate,
@@ -118,7 +109,7 @@ public class Application extends javafx.application.Application{
     class CaptureThread extends Thread {
         public void run() {
             AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
-            audioFile = new File("junk.wav");;
+            audioFile = new File("junk.wav");
 
             try{
                 targetDataLine.open(audioFormat);
@@ -130,10 +121,25 @@ public class Application extends javafx.application.Application{
             }catch (Exception e){
                 e.printStackTrace();
             }
+        }
+    }
 
+    class RecognizeThread extends Thread {
+        public void run() {
+            try {
+                InputStream stream = new FileInputStream(audioFile);
+                recognizer.startRecognition(stream);
 
+                SpeechResult result;
 
-
+                if ((result = recognizer.getResult()) != null) {
+                    recognizedText.setText("You said: " + result.getHypothesis());
+                    System.out.println("Hypothesis: " + result.getHypothesis());
+                }
+                recognizer.stopRecognition();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

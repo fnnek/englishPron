@@ -6,8 +6,7 @@
 <?import javafx.scene.text.Text?>
 <GridPane fx:controller="Application"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-    <Button text="Start" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#handleStartButton"> </Button>
-    <Button text="Stop" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#handleStopButton"> </Button>
+    <Button fx:id="startB" text="Start" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#handleStartButton"> </Button>
+    <Button fx:id="stopB" text="Stop" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#handleStopButton" disable="true"> </Button>
     <Text fx:id="recognizedText" text="Click start button" GridPane.columnIndex="0" GridPane.rowIndex="1"> </Text>
-    <Text fx:id="info" text="..." GridPane.columnIndex="0" GridPane.rowIndex="2"> </Text>
 </GridPane>
