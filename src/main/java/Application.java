@@ -28,8 +28,23 @@ public class Application extends javafx.application.Application{
     @FXML private Text recognizedText;
     @FXML private Button startB;
     @FXML private Button stopB;
+    @FXML private Button voiceLessons;
 
-    @FXML protected void handleStartButton(ActionEvent event){
+    @FXML private void handleVoiceLessonsButton(ActionEvent event) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("PopupView.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Choose lesson");
+            stage.setScene(new Scene(root, 200, 200));
+            stage.show();
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+
+    @FXML protected void handleStartButton(ActionEvent event) {
         recognizedText.setText("Speak now...");
         startB.setDisable(true);
         stopB.setDisable(false);
