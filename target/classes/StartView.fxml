@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Application"
+            fx:controller="StartView"
 
 >
     <top>
@@ -31,7 +31,7 @@
                 <ColumnConstraints halignment="CENTER"/>
             </columnConstraints>
             <Button GridPane.rowIndex="0">Start Random</Button>
-            <Button fx:id="voiceLessons" GridPane.rowIndex="1" onAction="#handleVoiceLessonsButton">Voice Lessons
+            <Button GridPane.rowIndex="1" onAction="#handleVoiceLessonsButton">Voice Lessons
             </Button>
             <Button GridPane.rowIndex="2">Words Lessons</Button>
             <Button GridPane.rowIndex="3">Create New Lesson</Button>

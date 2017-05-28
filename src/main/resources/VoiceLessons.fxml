@@ -20,11 +20,11 @@
         </Label>
     </top>
     <center>
-        <GridPane alignment="CENTER" GridPane.rowIndex="1" vgap="30" hgap="30">
+        <GridPane alignment="CENTER" GridPane.rowIndex="1" vgap="30" hgap="20">
             <columnConstraints>
                 <ColumnConstraints halignment="CENTER"/>
             </columnConstraints>
-            <ComboBox promptText="Choose lesson" GridPane.rowIndex="0">
+            <ComboBox promptText="Choose lesson" GridPane.rowIndex="0" fx:id="chooseLesson">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="Lesson 1"/>
@@ -39,7 +39,8 @@
 
             </ComboBox>
 
-            <Button GridPane.rowIndex="1">Start</Button>
+            <Button GridPane.rowIndex="1" onAction="#handleStartLessonButton">Start</Button>
+            <Button GridPane.rowIndex="2" onAction="#handleGoBackButton">Go back</Button>
 
         </GridPane>
     </center>
