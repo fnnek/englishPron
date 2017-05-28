@@ -5,8 +5,11 @@
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.SpeechResult;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,6 +23,7 @@ import java.io.IOException;
 
 public class Application extends javafx.application.Application{
 
+    private Stage stage;
     private static Configuration configuration;
     private static File audioFile;
     private static AudioFormat audioFormat;
@@ -29,19 +33,26 @@ public class Application extends javafx.application.Application{
     @FXML private Button startB;
     @FXML private Button stopB;
     @FXML private Button voiceLessons;
+    private int width = 600;
+    private int height = 350;
+    private static Application instance;
+    public Application() {
+        instance = this;
+    }
 
-    @FXML private void handleVoiceLessonsButton(ActionEvent event) {
-        Parent root;
+    public static Application getInstance() {
+        return instance;
+    }
+
+    @FXML private void handleVoiceLessonsButton(ActionEvent event){
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("PopupView.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Choose lesson");
-            stage.setScene(new Scene(root, 200, 200));
-            stage.show();
-
-        } catch (Exception e) {
-            System.out.println(e.toString());
+            replaceSceneContent("VoiceLessons.fxml",event);
         }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+
     }
 
     @FXML protected void handleStartButton(ActionEvent event) {
@@ -66,14 +77,13 @@ public class Application extends javafx.application.Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        stage = primaryStage;
+        this.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("StartView.fxml"));
-        primaryStage.setTitle("engPron");
-        primaryStage.setScene(new Scene(root, 400, 375));
+        this.stage.setTitle("engPron");
+        this.stage.setScene(new Scene(root, width, height));
 
-
-
-
-        primaryStage.show();
+        stage.show();
     }
     public static void main(String ...arg) throws Exception{
 
@@ -90,6 +100,14 @@ public class Application extends javafx.application.Application{
         launch(arg);
 
 
+    }
+
+    private void replaceSceneContent(String fxml, ActionEvent event) throws Exception {
+        Parent blah = FXMLLoader.load(getClass().getResource(fxml));
+        Scene scene = new Scene(blah,width,height);
+        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        appStage.setScene(scene);
+        appStage.show();
     }
 
     private void captureAudio(){
@@ -157,4 +175,6 @@ public class Application extends javafx.application.Application{
             }
         }
     }
+
+
 }

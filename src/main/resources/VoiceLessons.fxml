@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.collections.FXCollections?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="VoiceLessons"
+>
+    <top>
+        <Label text="Choose lesson">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+    </top>
+    <center>
+        <GridPane alignment="CENTER" GridPane.rowIndex="1" vgap="30" hgap="30">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER"/>
+            </columnConstraints>
+            <ComboBox promptText="Choose lesson" GridPane.rowIndex="0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Lesson 1"/>
+                        <String fx:value="Lesson 2"/>
+                        <String fx:value="Lesson 3"/>
+                        <String fx:value="Lesson 4"/>
+                        <String fx:value="Lesson 5"/>
+
+                    </FXCollections>
+
+                </items>
+
+            </ComboBox>
+
+            <Button GridPane.rowIndex="1">Start</Button>
+
+        </GridPane>
+    </center>
+
+</BorderPane>

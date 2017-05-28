@@ -10,10 +10,13 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="Application"
-            prefHeight="400.0" prefWidth="600.0"
-            >
+
+>
     <top>
         <GridPane alignment="BASELINE_CENTER" hgap="10" vgap="10" prefHeight="70">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER"/>
+            </columnConstraints>
             <Label GridPane.rowIndex="0" text="English Pronouncion">
                 <font>
                     <Font size="24.0"/>
@@ -22,27 +25,16 @@
         </GridPane>
     </top>
     <center>
-        <BorderPane>
-            <top>
-                <GridPane alignment="CENTER" hgap="20" vgap="20" prefHeight="70">
-                    <Button>Start Random</Button>
-                </GridPane>
-            </top>
-            <center>
-                <GridPane alignment="TOP_CENTER" hgap="20" vgap="20">
-                    <Button fx:id="voiceLessons" GridPane.rowIndex="0" onAction="#handleVoiceLessonsButton">Voice Lessons</Button>
-                    <Button GridPane.rowIndex="1">Words Lessons</Button>
-                </GridPane>
-            </center>
-            <bottom>
-                <GridPane alignment="CENTER" prefHeight="70">
-                    <Button>Create New Lesson</Button>
-                </GridPane>
-            </bottom>
-        </BorderPane>
+
+        <GridPane alignment="CENTER" hgap="20" vgap="20">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER"/>
+            </columnConstraints>
+            <Button GridPane.rowIndex="0">Start Random</Button>
+            <Button fx:id="voiceLessons" GridPane.rowIndex="1" onAction="#handleVoiceLessonsButton">Voice Lessons
+            </Button>
+            <Button GridPane.rowIndex="2">Words Lessons</Button>
+            <Button GridPane.rowIndex="3">Create New Lesson</Button>
+        </GridPane>
     </center>
-    <bottom>
-
-    </bottom>
-
 </BorderPane>
