@@ -16,6 +16,7 @@ import java.io.InputStream;
  * Created by fnnek on 28.05.17.
  */
 public class VoiceLesson {
+    private int actualWord = 1;
     public VoiceLesson() {
         try {
             configureRecognizer();
@@ -32,6 +33,8 @@ public class VoiceLesson {
     @FXML private Text recognizedText;
     @FXML private Button startB;
     @FXML private Button stopB;
+    @FXML private Button previousWord;
+    @FXML private Button nextWord;
     @FXML
     protected void handleStartButton(ActionEvent event) {
         recognizedText.setText("Speak now...");
@@ -50,6 +53,14 @@ public class VoiceLesson {
         new VoiceLesson.RecognizeThread().start();
         startB.setDisable(false);
         stopB.setDisable(true);
+    }
+
+    @FXML protected void handlePreviousWordButton() {
+
+    }
+
+    @FXML protected void handleNextWordButton() {
+        
     }
     private void captureAudio(){
         try{

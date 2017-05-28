@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b166e533-0c1a-4535-a1e7-e4f05518e8d4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/MainView.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/MainView.fxml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Application$CaptureThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Application$RecognizeThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/MainView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/MainView.fxml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/junk.wav" afterPath="$PROJECT_DIR$/junk.wav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Application.class" afterPath="$PROJECT_DIR$/target/classes/Application.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/VoiceLessons.class" afterPath="$PROJECT_DIR$/target/classes/VoiceLessons.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Application.java" afterPath="$PROJECT_DIR$/src/main/java/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/VoiceLessons.java" afterPath="$PROJECT_DIR$/src/main/java/VoiceLessons.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/StartView.fxml" afterPath="$PROJECT_DIR$/src/main/resources/StartView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/VoiceLessons.fxml" afterPath="$PROJECT_DIR$/src/main/resources/VoiceLessons.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/StartView.fxml" afterPath="$PROJECT_DIR$/target/classes/StartView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/VoiceLessons.fxml" afterPath="$PROJECT_DIR$/target/classes/VoiceLessons.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/VoiceLesson.java" afterPath="$PROJECT_DIR$/src/main/java/VoiceLesson.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/VoiceLesson.fxml" afterPath="$PROJECT_DIR$/src/main/resources/VoiceLesson.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VoiceLesson.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VoiceLesson.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/VoiceLesson.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="50" column="0" lean-forward="false" selection-start-line="43" selection-start-column="62" selection-end-line="50" selection-end-column="0" />
+            <state relative-caret-position="434">
+              <caret line="62" column="8" lean-forward="false" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -59,14 +46,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VoiceLesson.fxml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VoiceLesson.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/VoiceLesson.fxml">
           <provider editor-type-id="JavaFX-Scene-Builder">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="28" column="67" lean-forward="false" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
+            <state relative-caret-position="267">
+              <caret line="36" column="96" lean-forward="false" selection-start-line="36" selection-start-column="96" selection-end-line="36" selection-end-column="96" />
               <folding />
             </state>
           </provider>
@@ -150,8 +137,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="18" selection-end-column="32" />
+            <state relative-caret-position="240">
+              <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -828,12 +815,12 @@
       <workItem from="1494697660346" duration="1119000" />
       <workItem from="1494793742622" duration="2233000" />
       <workItem from="1494830358276" duration="4259000" />
-      <workItem from="1495968128961" duration="11399000" />
+      <workItem from="1495968128961" duration="14110000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23361000" />
+    <option name="totallyTimeSpent" value="26072000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1600" height="873" extended-state="6" />
@@ -1203,17 +1190,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/StartView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="18" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/PopupView.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
@@ -1254,16 +1230,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/VoiceLessons.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="26" column="33" lean-forward="false" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Application.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1278,10 +1244,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/VoiceLesson.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/StartView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="43" selection-start-column="62" selection-end-line="50" selection-end-column="0" />
+        <state relative-caret-position="240">
+          <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/VoiceLessons.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="26" column="33" lean-forward="false" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1293,9 +1270,19 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="28" column="67" lean-forward="false" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
+        <state relative-caret-position="267">
+          <caret line="36" column="96" lean-forward="false" selection-start-line="36" selection-start-column="96" selection-end-line="36" selection-end-column="96" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/VoiceLesson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="62" column="8" lean-forward="false" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
