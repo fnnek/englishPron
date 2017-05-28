@@ -1,0 +1,74 @@
+<course>
+	<lesson id="1">
+		<word_1>Man</word_1>
+		<word_2>Woman</word_2>
+		<word_3>I</word_3>
+		<word_4>Am</word_4>
+		<word_5>Boy</word_5>
+		<word_6>Girl</word_6>
+		<word_7>She</word_7>
+		<word_8>He</word_8>
+		<word_9>It</word_9>
+		<word_10>You</word_10>
+	</lesson>
+	<lesson id="2">
+		<word_1>Eat</word_1>
+		<word_2>Turn</word_2>
+		<word_3>Bread</word_3>
+		<word_4>Dinner</word_4>
+		<word_5>Drink</word_5>
+		<word_6>Water</word_6>
+		<word_7>Bear</word_7>
+		<word_8>Have</word_8>
+		<word_9>Beer</word_9>
+		<word_10>Friend</word_10>
+	</lesson>
+	<lesson id="3">
+		<word_1>Follow</word_1>
+		<word_2>High</word_2>
+		<word_3>Each</word_3>
+		<word_4>Even</word_4>
+		<word_5>Such</word_5>
+		<word_6>Which</word_6>
+		<word_7>Land</word_7>
+		<word_8>Big</word_8>
+		<word_9>Large</word_9>
+		<word_10>Hand</word_10>
+	</lesson>
+	<lesson id="4">
+		<word_1>Orange</word_1>
+		<word_2>Mushroom</word_2>
+		<word_3>Tomatoe</word_3>
+		<word_4>Banana</word_4>
+		<word_5>Peach</word_5>
+		<word_6>Strawberry</word_6>
+		<word_7>Bean</word_7>
+		<word_8>Lemon</word_8>
+		<word_9>Pear</word_9>
+		<word_10>Potatoe</word_10>
+	</lesson>
+	<lesson id="5">
+		<word_1>Dog</word_1>
+		<word_2>Cat</word_2>
+		<word_3>Mouse</word_3>
+		<word_4>Rat</word_4>
+		<word_5>Bird</word_5>
+		<word_6>Ant</word_6>
+		<word_7>Cow</word_7>
+		<word_8>Sheep</word_8>
+		<word_9>Monkey</word_9>
+		<word_10>Lion</word_10>
+	</lesson>
+	<lesson id="6">
+		<word_1>Red</word_1>
+		<word_2>Blue</word_2>
+		<word_3>Brown</word_3>
+		<word_4>Yellow</word_4>
+		<word_5>Black</word_5>
+		<word_6>Green</word_6>
+		<word_7>White</word_7>
+		<word_8>Violet</word_8>
+		<word_9>Cyan</word_9>
+		<word_10>Pink</word_10>
+	</lesson>
+</course>

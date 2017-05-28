@@ -9,6 +9,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="VoiceLesson">
@@ -27,15 +29,27 @@
             <BorderPane.margin>
                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
             </BorderPane.margin>
-            <Text GridPane.rowIndex="0">Word #1</Text>
+            <Label GridPane.rowIndex="0" GridPane.columnIndex="0" fx:id="word"> <font>
+                <Font size="24.0"/>
+            </font></Label>
+            <ImageView GridPane.rowIndex="0" GridPane.columnIndex="1" fx:id="wordOk" visible="false" >
+                <image>
+                    <Image url="@/myres/Ok-PNG-File.png" requestedHeight="20" requestedWidth="20"/>
+                </image>
+            </ImageView>
             <Button fx:id="startB" text="Start" GridPane.rowIndex="1" onAction="#handleStartButton"> </Button>
             <Button fx:id="stopB" text="Stop" GridPane.rowIndex="2" onAction="#handleStopButton"
                     disable="true"> </Button>
             <Text fx:id="recognizedText" text="Click start button" GridPane.rowIndex="3"> </Text>
             <GridPane alignment="BASELINE_CENTER" GridPane.rowIndex="4" hgap="10" vgap="10">
                 <Button fx:id="previousWord" text="Previous word" GridPane.columnIndex="0"
-                        GridPane.rowIndex="0"> </Button>
-                <Button fx:id="nextWord" text="Next word" GridPane.columnIndex="1" GridPane.rowIndex="0"> </Button>
+                        GridPane.rowIndex="0" onAction="#handlePreviousWordButton" disable="true"> </Button>
+                <Button fx:id="nextWord" text="Next word" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                onAction="#handleNextWordButton"> </Button>
+
+                <Button text="+" GridPane.columnIndex="2" GridPane.rowIndex="0" onAction="#handleSymButton">
+
+                </Button>
             </GridPane>
 
 

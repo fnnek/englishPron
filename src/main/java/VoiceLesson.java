@@ -3,20 +3,52 @@ import edu.cmu.sphinx.api.SpeechResult;
 import edu.cmu.sphinx.api.StreamSpeechRecognizer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 
 import javax.sound.sampled.*;
+import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Created by fnnek on 28.05.17.
  */
-public class VoiceLesson {
+public class VoiceLesson implements Initializable {
+
     private int actualWord = 1;
+    private static File audioFile;
+    private static AudioFormat audioFormat;
+    private static TargetDataLine targetDataLine;
+    private static StreamSpeechRecognizer recognizer;
+    private List<Boolean> list;
+    @FXML
+    private Text recognizedText;
+    @FXML
+    private Button startB;
+    @FXML
+    private Button stopB;
+    @FXML
+    private Button previousWord;
+    @FXML
+    private Button nextWord;
+    @FXML
+    private ProgressBar lessonProgressBar;
+    @FXML
+    private Label word;
+    @FXML
+    private ImageView wordOk;
+
     public VoiceLesson() {
         try {
             configureRecognizer();
@@ -24,17 +56,20 @@ public class VoiceLesson {
             System.out.println(e);
         }
 
+
     }
 
-    private static File audioFile;
-    private static AudioFormat audioFormat;
-    private static TargetDataLine targetDataLine;
-    private static StreamSpeechRecognizer recognizer;
-    @FXML private Text recognizedText;
-    @FXML private Button startB;
-    @FXML private Button stopB;
-    @FXML private Button previousWord;
-    @FXML private Button nextWord;
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        previousWord.setDisable(true);
+        word.setText("Word #" + actualWord);
+        list = new ArrayList<Boolean>();
+
+        for(int i = 0; i<10;i++) {
+            list.add(false);
+        }
+    }
+
     @FXML
     protected void handleStartButton(ActionEvent event) {
         recognizedText.setText("Speak now...");
@@ -44,7 +79,8 @@ public class VoiceLesson {
 
     }
 
-    @FXML protected void handleStopButton(ActionEvent event) {
+    @FXML
+    protected void handleStopButton(ActionEvent event) {
 
         targetDataLine.stop();
         targetDataLine.close();
@@ -55,15 +91,46 @@ public class VoiceLesson {
         stopB.setDisable(true);
     }
 
-    @FXML protected void handlePreviousWordButton() {
+    @FXML
+    protected void handlePreviousWordButton() {
+        nextWord.setDisable(false);
+        if (actualWord > 2) {
+            actualWord--;
+        } else {
+            actualWord--;
+            previousWord.setDisable(true);
+        }
 
+        word.setText("Word #" + actualWord);
+
+        lessonProgressBar.setProgress(actualWord / 10.0);
     }
 
-    @FXML protected void handleNextWordButton() {
-        
+    @FXML
+    protected void handleNextWordButton() {
+        previousWord.setDisable(false);
+        if (actualWord < 9) {
+            actualWord++;
+        } else {
+            actualWord++;
+            nextWord.setDisable(true);
+        }
+
+        word.setText("Word #" + actualWord);
+        lessonProgressBar.setProgress(actualWord / 10.0);
+
+
     }
-    private void captureAudio(){
-        try{
+    @FXML
+    protected void handleSymButton(){
+        boolean actualBool = list.get(actualWord - 1);
+        actualBool = !actualBool;
+        list.set(actualWord-1,actualBool);
+        wordOk.setVisible(actualBool);
+    }
+
+    private void captureAudio() {
+        try {
             audioFormat = getAudioFormat();
             DataLine.Info dataLineInfo =
                     new DataLine.Info(
@@ -72,13 +139,13 @@ public class VoiceLesson {
             targetDataLine = (TargetDataLine)
                     AudioSystem.getLine(dataLineInfo);
             new CaptureThread().start();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);
         }
     }
 
-    private AudioFormat getAudioFormat(){
+    private AudioFormat getAudioFormat() {
         float sampleRate = 16000.0F;
         int sampleSizeInBits = 16;
         int channels = 2;
@@ -91,7 +158,7 @@ public class VoiceLesson {
                 bigEndian);
     }
 
-    private void configureRecognizer() throws Exception{
+    private void configureRecognizer() throws Exception {
         Configuration configuration;
         configuration = new Configuration();
 
@@ -109,14 +176,14 @@ public class VoiceLesson {
             AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
             audioFile = new File("junk.wav");
 
-            try{
+            try {
                 targetDataLine.open(audioFormat);
                 targetDataLine.start();
                 AudioSystem.write(
                         new AudioInputStream(targetDataLine),
                         fileType,
                         audioFile);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
