@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
 public class VoiceLesson implements Initializable {
 
     private int actualWord = 1;
+    private int correctAnswers = 0;
     private static File audioFile;
     private static AudioFormat audioFormat;
     private static TargetDataLine targetDataLine;
@@ -103,7 +104,9 @@ public class VoiceLesson implements Initializable {
 
         word.setText("Word #" + actualWord);
 
-        lessonProgressBar.setProgress(actualWord / 10.0);
+        //lessonProgressBar.setProgress(correctAnswers / 10.0);
+        boolean actualBool = list.get(actualWord - 1);
+        wordOk.setVisible(actualBool);
     }
 
     @FXML
@@ -117,8 +120,10 @@ public class VoiceLesson implements Initializable {
         }
 
         word.setText("Word #" + actualWord);
-        lessonProgressBar.setProgress(actualWord / 10.0);
+       // lessonProgressBar.setProgress(correctAnswers / 10.0);
 
+        boolean actualBool = list.get(actualWord - 1);
+        wordOk.setVisible(actualBool);
 
     }
     @FXML
@@ -127,6 +132,13 @@ public class VoiceLesson implements Initializable {
         actualBool = !actualBool;
         list.set(actualWord-1,actualBool);
         wordOk.setVisible(actualBool);
+
+        if(!actualBool)
+            correctAnswers++;
+        else
+            correctAnswers--;
+
+        lessonProgressBar.setProgress(correctAnswers / 10.0);
     }
 
     private void captureAudio() {
