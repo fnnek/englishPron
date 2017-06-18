@@ -1,0 +1,82 @@
+.combo-box .list-cell
+{
+    -fx-background: "#4CC8A5";
+    -fx-background-color: #4CC8A5;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 3 0 2 7;
+    -fx-cell-size: 1.66667em;
+        -fx-font: 13px "Arial";
+}
+
+.combo-box-popup .list-view
+{
+    -fx-background-color: #4CC8A5, #4CC8A5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+        -fx-font: 13px "Arial";
+
+}
+
+.combo-box-popup .list-view .list-cell
+{
+    -fx-padding: 4 0 4 5;
+
+    /* No alternate highlighting */
+    -fx-background-color: #F03C5F;
+        -fx-font: 13px "Arial";
+
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover
+{
+    -fx-background: -fx-accent;
+    -fx-background-color: #4CC8A5;
+    -fx-text-fill: #FFFFFF;
+        -fx-font: 13px "Arial";
+
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover
+{
+    -fx-background-color: #4CC8A5;
+    -fx-text-fill: #FFFFFF;
+        -fx-font: 13px "Arial";
+
+}
+
+.combo-box-base
+{
+    -fx-skin: "com.sun.javafx.scene.control.skin.ComboBoxBaseSkin";
+    -fx-background-color: #4CC8A5, #4CC8A5, #4CC8A5, #4CC8A5;
+    -fx-background-radius: 5, 5, 4, 3;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-padding: 0;
+        -fx-font: 13px "Arial";
+}
+
+.combo-box-base:hover
+{
+    -fx-color: #4CC8A5;
+        -fx-font: 13px "Arial";
+
+}
+
+.combo-box-base:showing
+{
+    -fx-color: #4CC8A5;
+        -fx-font: 13px "Arial";
+
+}
+
+.combo-box-base:focused {
+    -fx-background-color: #4CC8A5, #4CC8A5, #4CC8A5, #4CC8A5;
+    -fx-background-radius: 6.4, 4, 5, 3;
+    -fx-background-insets: -1.4, 0, 1, 2;
+        -fx-font: 13px "Arial";
+}
+
+.combo-box-base:disabled {
+    -fx-opacity: .4;
+    -fx-font: 13px "Arial";
+
+}

@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: sphinx4-core-5prealpha-20160628.232526-10.jar commons-math
+ 3-3.2.jar sphinx4-data-5prealpha-20160628.232535-10.jar
+Main-Class: Application
+

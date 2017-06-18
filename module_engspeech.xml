@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_engspeech" default="compile.module.engspeech">
+  <dirname property="module.engspeech.basedir" file="${ant.file.module_engspeech}"/>
+  
+  <property name="module.jdk.home.engspeech" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.engspeech" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.engspeech" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.engspeech" value="-encoding UTF-8 -source 8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="engspeech.output.dir" value="${module.engspeech.basedir}/target/classes"/>
+  <property name="engspeech.testoutput.dir" value="${module.engspeech.basedir}/target/test-classes"/>
+  
+  <path id="engspeech.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="engspeech.module.production.classpath">
+    <path refid="${module.jdk.classpath.engspeech}"/>
+    <path refid="library.maven:_edu.cmu.sphinx:sphinx4-core:5prealpha-snapshot.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-math3:3.2.classpath"/>
+    <path refid="library.maven:_edu.cmu.sphinx:sphinx4-data:5prealpha-snapshot.classpath"/>
+  </path>
+  
+  <path id="engspeech.runtime.production.module.classpath">
+    <pathelement location="${engspeech.output.dir}"/>
+    <path refid="library.maven:_edu.cmu.sphinx:sphinx4-core:5prealpha-snapshot.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-math3:3.2.classpath"/>
+    <path refid="library.maven:_edu.cmu.sphinx:sphinx4-data:5prealpha-snapshot.classpath"/>
+  </path>
+  
+  <path id="engspeech.module.classpath">
+    <path refid="${module.jdk.classpath.engspeech}"/>
+    <pathelement location="${engspeech.output.dir}"/>
+    <path refid="library.maven:_edu.cmu.sphinx:sphinx4-core:5prealpha-snapshot.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-math3:3.2.classpath"/>
+    <path refid="library.maven:_edu.cmu.sphinx:sphinx4-data:5prealpha-snapshot.classpath"/>
+  </path>
+  
+  <path id="engspeech.runtime.module.classpath">
+    <pathelement location="${engspeech.testoutput.dir}"/>
+    <pathelement location="${engspeech.output.dir}"/>
+    <path refid="library.maven:_edu.cmu.sphinx:sphinx4-core:5prealpha-snapshot.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-math3:3.2.classpath"/>
+    <path refid="library.maven:_edu.cmu.sphinx:sphinx4-data:5prealpha-snapshot.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.engspeech">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.engspeech">
+    <patternset refid="excluded.from.module.engspeech"/>
+  </patternset>
+  
+  <path id="engspeech.module.sourcepath">
+    <dirset dir="${module.engspeech.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.engspeech" depends="compile.module.engspeech.production,compile.module.engspeech.tests" description="Compile module EngSpeech"/>
+  
+  <target name="compile.module.engspeech.production" depends="register.custom.compilers" description="Compile module EngSpeech; production classes">
+    <mkdir dir="${engspeech.output.dir}"/>
+    <javac2 destdir="${engspeech.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.engspeech}/javac">
+      <compilerarg line="${compiler.args.engspeech}"/>
+      <bootclasspath refid="engspeech.module.bootclasspath"/>
+      <classpath refid="engspeech.module.production.classpath"/>
+      <src refid="engspeech.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.engspeech"/>
+    </javac2>
+    
+    <copy todir="${engspeech.output.dir}">
+      <fileset dir="${module.engspeech.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.engspeech.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.engspeech.tests" depends="register.custom.compilers,compile.module.engspeech.production" description="compile module EngSpeech; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.engspeech" description="cleanup module">
+    <delete dir="${engspeech.output.dir}"/>
+    <delete dir="${engspeech.testoutput.dir}"/>
+  </target>
+</project>

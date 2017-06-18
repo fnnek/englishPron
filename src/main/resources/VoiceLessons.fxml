@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import javafx.collections.FXCollections?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="VoiceLessons"
->
+
+<BorderPane style="-fx-background: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VoiceLessons">
     <top>
-        <Label text="Choose lesson">
-            <font>
-                <Font size="24.0"/>
-            </font>
-        </Label>
+            <Button onAction="#handleGoBackButton" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Back to menu">
+                <BorderPane.margin>
+                    <Insets left="20.0" top="22.0" />
+                </BorderPane.margin>
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font></Button>
     </top>
     <center>
-        <GridPane alignment="CENTER" GridPane.rowIndex="1" vgap="30" hgap="20">
+        <GridPane alignment="CENTER" hgap="20" vgap="30" GridPane.rowIndex="0">
             <columnConstraints>
-                <ColumnConstraints halignment="CENTER"/>
+                <ColumnConstraints halignment="CENTER" />
             </columnConstraints>
-            <ComboBox promptText="Choose lesson" GridPane.rowIndex="0" fx:id="chooseLesson">
+            <ComboBox fx:id="chooseLesson" minHeight="50" minWidth="200" promptText="Choose lesson" GridPane.rowIndex="0">
 
 
             </ComboBox>
 
-            <Button GridPane.rowIndex="1" onAction="#handleStartLessonButton">Start</Button>
-            <Button GridPane.rowIndex="2" onAction="#handleGoBackButton">Go back</Button>
+            <Button maxHeight="80.0" maxWidth="300.0" minHeight="50.0" onAction="#handleStartLessonButton" style="-fx-background-color: #F03C5F; -fx-text-fill:#FFFFFF" GridPane.rowIndex="2" text="Start">
+            <font>
+               <Font name="Arial" size="13.0" />
+            </font></Button>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
 
         </GridPane>
     </center>

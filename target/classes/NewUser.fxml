@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="NewUser"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <top>
+        <Button onAction="#handleGoBackButton" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Back to menu">
+            <BorderPane.margin>
+                <Insets left="20.0" top="22.0" />
+            </BorderPane.margin></Button>
+    </top>
+
+    <center>
+        <GridPane alignment="BASELINE_CENTER" hgap="30" prefHeight="70" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER"/>
+            </columnConstraints>
+            <Label style="-fx-text-fill: #4CC8A5" text="Add New User" GridPane.rowIndex="0">
+                <font>
+                    <Font size="24.0"/>
+                </font>
+            </Label>
+            <TextField fx:id="newUserName"
+                       maxWidth="140.0" minWidth="80.0" promptText="Type in your name" GridPane.rowIndex="1">
+                <HBox.margin>
+                    <Insets left="5.0" right="5.0" />
+                </HBox.margin>
+            </TextField>
+
+            <Button onAction="#handleNewUserButton" GridPane.rowIndex="2"
+                    maxWidth="205.0" minHeight="50"
+                    style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" textAlignment="CENTER"
+                    wrapText="true" fx:id="newUserBtn">
+                Add new user
+            </Button>
+
+
+        </GridPane>
+    </center>
+
+
+
+
+
+</BorderPane>

@@ -4,14 +4,16 @@ import edu.cmu.sphinx.api.StreamSpeechRecognizer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import javax.sound.sampled.*;
 import javafx.scene.image.ImageView;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,6 +21,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -26,13 +29,19 @@ import java.util.ResourceBundle;
  */
 public class VoiceLesson implements Initializable {
 
-    private int actualWord = 1;
+    private int actualWord = 0;
     private int correctAnswers = 0;
     private static File audioFile;
     private static AudioFormat audioFormat;
     private static TargetDataLine targetDataLine;
     private static StreamSpeechRecognizer recognizer;
+    private List<String> polish = new ArrayList<String>();
+    private List<String> english = new ArrayList<String>();
     private List<Boolean> list;
+    private String recognizedWord = "";
+    private int points=0;
+    private int wordCount = 1;
+    private List<PointsPerWord> pointsEarnedPerWord = new ArrayList<PointsPerWord>();
     @FXML
     private Text recognizedText;
     @FXML
@@ -48,7 +57,17 @@ public class VoiceLesson implements Initializable {
     @FXML
     private Label word;
     @FXML
-    private ImageView wordOk;
+    private Button checkbtn;
+    @FXML
+    private TextField wordField;
+    @FXML
+    private Label typedWordRightLbl;
+    @FXML
+    private Label recordedWordRightLbl;
+    @FXML
+    private Label pointsLbl;
+    @FXML
+    private Label wordCountLbl;
 
     public VoiceLesson() {
         try {
@@ -56,19 +75,37 @@ public class VoiceLesson implements Initializable {
         } catch (Exception e) {
             System.out.println(e);
         }
+        XmlReader xmlReader = new XmlReader();
+        System.out.println("\nNazwa lekcji: "+Globals.lessonName);
+        polish = xmlReader.getWords(Globals.lessonName,"polish");
+        english = xmlReader.getWords(Globals.lessonName,"english");
+        list = new ArrayList<Boolean>();
 
+        for(int i = 0; i<10;i++) {
+            list.add(false);
+            pointsEarnedPerWord.add(new PointsPerWord(0,0));
+        }
 
+        if(Globals.lessonName!= null){
+            System.out.println(Globals.lessonName);
+        }
     }
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         previousWord.setDisable(true);
-        word.setText("Word #" + actualWord);
+        //word.setText("Word #" + actualWord);
+        word.setText(polish.get(actualWord));
+        recognizedText.setText("Click start to record your english pronunciation of \"" + word.getText() +"\"");
+        wordField.setPromptText("Type in \""+word.getText() + "\" in english");
         list = new ArrayList<Boolean>();
 
         for(int i = 0; i<10;i++) {
             list.add(false);
         }
+        Application.stage.setTitle("Eng-Pron: Voice lesson");
+
+
     }
 
     @FXML
@@ -76,6 +113,9 @@ public class VoiceLesson implements Initializable {
         recognizedText.setText("Speak now...");
         startB.setDisable(true);
         stopB.setDisable(false);
+        checkbtn.setDisable(true);
+        nextWord.setDisable(true);
+        previousWord.setDisable(true);
         captureAudio();
 
     }
@@ -90,56 +130,143 @@ public class VoiceLesson implements Initializable {
         new VoiceLesson.RecognizeThread().start();
         startB.setDisable(false);
         stopB.setDisable(true);
+        if (actualWord > 1){
+            previousWord.setDisable(false);
+        }
+        if (actualWord <8){
+            nextWord.setDisable(false);
+        }
     }
 
     @FXML
     protected void handlePreviousWordButton() {
         nextWord.setDisable(false);
-        if (actualWord > 2) {
+        if (actualWord > 1) {
             actualWord--;
         } else {
             actualWord--;
             previousWord.setDisable(true);
         }
-
-        word.setText("Word #" + actualWord);
-
+        wordCount--;
+        wordCountLbl.setText("Word: "+wordCount+"/"+english.size());
+        word.setText(polish.get(actualWord));
+        recognizedText.setText("Click start to record your english pronunciation of \"" + word.getText() +"\"");
+        wordField.clear();
+        wordField.setStyle("-fx-text-fill: black;");
+        wordField.setPromptText("Type in \""+word.getText() + "\" in english");
+        recognizedWord = " ";
         //lessonProgressBar.setProgress(correctAnswers / 10.0);
-        boolean actualBool = list.get(actualWord - 1);
-        wordOk.setVisible(actualBool);
+        boolean actualBool = list.get(actualWord );
+        recordedWordRightLbl.setText("");
+        typedWordRightLbl.setText("");
+//        recordedWordRightLbl.setText("✓");
+//        recordedWordRightLbl.setVisible(actualBool);
+        checkbtn.setDisable(actualBool);
     }
 
     @FXML
     protected void handleNextWordButton() {
         previousWord.setDisable(false);
-        if (actualWord < 9) {
+        if (actualWord < 8) {
             actualWord++;
         } else {
             actualWord++;
             nextWord.setDisable(true);
         }
-
-        word.setText("Word #" + actualWord);
+        wordCount++;
+        wordCountLbl.setText("Word: "+wordCount+"/"+english.size());
+        word.setText(polish.get(actualWord));
        // lessonProgressBar.setProgress(correctAnswers / 10.0);
-
-        boolean actualBool = list.get(actualWord - 1);
-        wordOk.setVisible(actualBool);
-
+        recognizedText.setText("Click start to record your english pronunciation of \"" + word.getText() +"\"");
+        wordField.clear();
+        wordField.setStyle("-fx-text-fill: black;");
+        wordField.setPromptText("Type in \""+word.getText() + "\" in english");
+        recognizedWord = " ";
+        boolean actualBool = list.get(actualWord );
+        recordedWordRightLbl.setText("");
+        typedWordRightLbl.setText("");
+       // recordedWordRightLbl.setText("✓");
+       // recordedWordRightLbl.setVisible(actualBool);
+        checkbtn.setDisable(actualBool);
     }
+
     @FXML
-    protected void handleSymButton(){
-        boolean actualBool = list.get(actualWord - 1);
-        actualBool = !actualBool;
-        list.set(actualWord-1,actualBool);
-        wordOk.setVisible(actualBool);
+    protected void handleCheck(){
 
-        if(!actualBool)
-            correctAnswers++;
-        else
-            correctAnswers--;
+        System.out.println(english.get(actualWord));
+        System.out.println(polish.get(actualWord));
+        System.out.println(wordField.getPromptText());
+        recognizedText.setText("You said: "+recognizedWord);
+        if(english.get(actualWord).equalsIgnoreCase(recognizedWord))
+        {
+            recognizedText.setStyle("-fx-text-fill: green;");
+            list.set(actualWord,true);
+            recordedWordRightLbl.setTextFill(Color.GREEN);
+            recordedWordRightLbl.setText("✓");
+            recordedWordRightLbl.setFont(Font.font ("Verdana", 20));
+            if (pointsEarnedPerWord.get(wordCount-1).getPronunciation() == 0){
+                points++;
+                pointsEarnedPerWord.get(wordCount-1).setPronunciation(1);
+            }
+            //points++;
+            pointsLbl.setText("Points: "+points+"/"+english.size()*2);
 
-        lessonProgressBar.setProgress(correctAnswers / 10.0);
+        }else{
+            recognizedText.setStyle("-fx-text-fill: red;");
+            recordedWordRightLbl.setTextFill(Color.RED);
+            recordedWordRightLbl.setText("X");
+            recordedWordRightLbl.setFont(Font.font ("Verdana", 20));
+        }
+        if(english.get(actualWord).equalsIgnoreCase(wordField.getText()))
+        {
+            wordField.setStyle("-fx-text-fill: green;");
+            list.set(actualWord,true);
+            typedWordRightLbl.setTextFill(Color.GREEN);
+            typedWordRightLbl.setText("✓");
+            typedWordRightLbl.setFont(Font.font ("Verdana", 20));
+            if (pointsEarnedPerWord.get(wordCount-1).getWriting() == 0){
+                points++;
+                pointsEarnedPerWord.get(wordCount-1).setWriting(1);
+            }
+            //points++;
+            pointsLbl.setText("Points: "+points+"/"+english.size()*2);
+        }else{
+            wordField.setStyle("-fx-text-fill: red;");
+            typedWordRightLbl.setTextFill(Color.RED);
+            typedWordRightLbl.setText("X");
+            typedWordRightLbl.setFont(Font.font ("Verdana", 20));
+        }
     }
+
+
+    @FXML
+    protected void handleBackbtn(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("End Lesson");
+        alert.setHeaderText("Do you want to save your result?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            try{
+                XmlReader reader = new XmlReader();
+                System.out.println("Saving lesson");
+                reader.saveLessonResult(Globals.lessonName,points);
+                System.out.println("Lesson Saved");
+                new SceneChanger().replaceSceneContent("StartView.fxml",event);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } else {
+            try{
+                new SceneChanger().replaceSceneContent("StartView.fxml",event);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+
+    }
+
+
 
     private void captureAudio() {
         try {
@@ -211,13 +338,39 @@ public class VoiceLesson implements Initializable {
                 SpeechResult result;
 
                 if ((result = recognizer.getResult()) != null) {
-                    recognizedText.setText("You said: " + result.getHypothesis());
+                    recognizedWord = result.getHypothesis();
+                    recognizedText.setText("You said: ***");
+                    checkbtn.setDisable(false);
                     System.out.println("Hypothesis: " + result.getHypothesis());
                 }
                 recognizer.stopRecognition();
             } catch (Exception e) {
                 e.printStackTrace();
+                checkbtn.setDisable(false);
             }
         }
     }
+
+    class PointsPerWord {
+        private int pronunciation;
+        private int writing;
+
+        public PointsPerWord(int pronunciation, int writing) {
+            this.pronunciation = pronunciation;
+            this.writing = writing;
+        }
+        public void setPronunciation(int pronunciation){
+            this.pronunciation = pronunciation;
+        }
+        public int getPronunciation(){
+            return this.pronunciation;
+        }
+        public void setWriting(int writing){
+            this.writing = writing;
+        }
+        public int getWriting(){
+            return this.writing;
+        }
+    }
+
 }

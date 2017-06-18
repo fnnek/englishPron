@@ -1,5 +1,5 @@
-<course>
-	<lesson id="1" name="Lesson 1">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><course>
+	<lesson id="1" lessonDescription="Subjects" name="Lesson 1">
 
 		<word>
 			<english>Man</english>
@@ -42,7 +42,7 @@
 			<polish>Ty</polish>
 		</word>
 	</lesson>
-	<lesson id="2" name="Lesson 2">
+	<lesson id="2" lessonDescription="Drinks" name="Lesson 2">
 
 		<word>
 			<english>Eat</english>
@@ -85,7 +85,7 @@
 			<polish>Przyjaciel</polish>
 		</word>
 	</lesson>
-	<lesson id="3" name="Lesson 3">
+	<lesson id="3" lessonDescription="Kind of verbs" name="Lesson 3">
 
 		<word>
 			<english>Follow</english>
@@ -127,8 +127,8 @@
 			<english>Even</english>
 			<polish>Nawet</polish>
 		</word>
-	</lesson>	
-	<lesson id="4" name="Lesson 4">
+	</lesson>
+	<lesson id="4" lessonDescription="Food" name="Lesson 4">
 
 		<word>
 			<english>Orange</english>
@@ -171,7 +171,7 @@
 			<polish>Ziemniak</polish>
 		</word>
 	</lesson>
-	<lesson id="5" name="Lesson 5">
+	<lesson id="5" lessonDescription="Animals" name="Lesson 5">
 
 		<word>
 			<english>Dog</english>
@@ -214,7 +214,7 @@
 			<polish>Lew</polish>
 		</word>
 	</lesson>
-	<lesson id="6" name="Lesson 6">
+	<lesson id="6" lessonDescription="Colours" name="Lesson 6">
 
 		<word>
 			<english>Red</english>
@@ -257,4 +257,44 @@
 			<polish>Różowy</polish>
 		</word>
 	</lesson>
-</course>
+
+	<lesson id="7" lessonDescription="Transport" name="Lesson 7">
+        <word><english>car</english><polish>samochód</polish></word>
+        <word><english>boat</english><polish>łódka</polish></word>
+        <word><english>ship</english><polish>statek</polish></word>
+        <word><english>airplane</english><polish>samolot</polish></word>
+        <word><english>bike</english><polish>rower</polish></word>
+        <word><english>scooter</english><polish>skuter</polish></word>
+        <word><english>bus</english><polish>autobus</polish></word>
+        <word><english>tram</english><polish>tramwaj</polish></word>
+        <word><english>train</english><polish>pociąg</polish></word>
+    </lesson>
+    <lesson id="8" lessonDescription="digits" name="Lesson 8">
+        <word>
+            <english>one</english><polish>jeden</polish>
+        </word>
+        <word>
+            <english>two</english><polish>dwa</polish>
+        </word>
+        <word>
+            <english>three</english><polish>trzy</polish>
+        </word>
+        <word>
+            <english>four</english><polish>cztery</polish>
+        </word>
+        <word>
+            <english>five</english><polish>pieć</polish>
+        </word>
+        <word>
+            <english>six</english><polish>sześć</polish>
+        </word>
+        <word>
+            <english>seven</english><polish>siedem</polish>
+        </word>
+        <word>
+            <english>eight</english><polish>osiem</polish>
+        </word>
+        <word>
+            <english>nine</english><polish>dziewięć</polish>
+        </word>
+    </lesson></course>

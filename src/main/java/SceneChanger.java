@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class SceneChanger {
     public void replaceSceneContent(String fxml, ActionEvent event) throws Exception {
         Parent blah = FXMLLoader.load(getClass().getResource(fxml));
-        Scene scene = new Scene(blah,600,350);
+        Scene scene = new Scene(blah,600,600);
         Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         appStage.setScene(scene);
         appStage.show();

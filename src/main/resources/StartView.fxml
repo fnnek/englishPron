@@ -1,40 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="StartView"
 
->
+<BorderPane style="-fx-background: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StartView">
     <top>
-        <GridPane alignment="BASELINE_CENTER" hgap="10" vgap="10" prefHeight="70">
+        <GridPane alignment="BASELINE_CENTER" hgap="30" prefHeight="70" vgap="10">
             <columnConstraints>
-                <ColumnConstraints halignment="CENTER"/>
+                <ColumnConstraints halignment="CENTER" />
             </columnConstraints>
-            <Label GridPane.rowIndex="0" text="English Pronouncion">
+            <Label style="-fx-text-fill: #4CC8A5" text="English Pronunciation" GridPane.rowIndex="1">
                 <font>
-                    <Font size="24.0"/>
+                    <Font name="Arial" size="24.0" />
                 </font>
             </Label>
+            <ImageView fx:id="imageView" fitHeight="120.0" fitWidth="120.0" layoutX="61.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                <image>
+                    <Image requestedHeight="120" requestedWidth="120" url="@/myres/engPl.png" />
+
+                </image>
+            </ImageView>
+
         </GridPane>
     </top>
     <center>
 
         <GridPane alignment="CENTER" hgap="20" vgap="20">
             <columnConstraints>
-                <ColumnConstraints halignment="CENTER"/>
+                <ColumnConstraints halignment="CENTER" />
             </columnConstraints>
-            <Button GridPane.rowIndex="0">Start Random</Button>
-            <Button GridPane.rowIndex="1" onAction="#handleVoiceLessonsButton">Voice Lessons
-            </Button>
-            <Button GridPane.rowIndex="2">Words Lessons</Button>
-            <Button GridPane.rowIndex="3">Create New Lesson</Button>
+            <VBox alignment="CENTER" GridPane.rowIndex="1">
+                <Label fx:id="loggedUser">
+                    <font>
+                        <Font name="Arial" size="16.0" />
+                    </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+                </Label>
+                <HBox>
+                    <Button maxWidth="100" minHeight="80" onAction="#handleRandomLessonButton" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Start Random Lesson" textAlignment="CENTER" wrapText="true">Start Random Lesson
+                        <BorderPane.margin>
+                            <Insets right="5.0" />
+                        </BorderPane.margin>
+                        <HBox.margin>
+                            <Insets right="5.0" />
+                        </HBox.margin>
+                  <font>
+                     <Font name="Arial" size="13.0" />
+                  </font>
+                    </Button>
+                    <Button maxWidth="100" minHeight="80" onAction="#handleVoiceLessonsButton" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Choose Lesson" textAlignment="CENTER" wrapText="true">
+                  <font>
+                     <Font name="Arial" size="13.0" />
+                  </font></Button>
+                </HBox>
+                <Button maxWidth="205.0" minHeight="50" onAction="#createOwnLessonButton" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Create New Lesson" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3">Create New Lesson
+                    <HBox.margin>
+                        <Insets top="50.0" />
+                    </HBox.margin>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+                </Button>
+                <Button maxWidth="205.0" minHeight="50" onAction="#changeUserButton" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3">Change user
+                    <HBox.margin>
+                        <Insets top="50.0" />
+                    </HBox.margin>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+                </Button>
+                <Button maxWidth="205.0" minHeight="50" onAction="#showProgressButton" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3">Show my progress
+                    <HBox.margin>
+                        <Insets top="50.0" />
+                    </HBox.margin>
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+                </Button>
+            </VBox>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
         </GridPane>
     </center>
+
+    <bottom>
+
+    </bottom>
 </BorderPane>

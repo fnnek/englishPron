@@ -23,7 +23,7 @@ import java.io.IOException;
 
 public class Application extends javafx.application.Application{
 
-    private Stage stage;
+    public static Stage stage;
     private static Configuration configuration;
     private static File audioFile;
     private static AudioFormat audioFormat;
@@ -34,7 +34,7 @@ public class Application extends javafx.application.Application{
     @FXML private Button stopB;
     @FXML private Button voiceLessons;
     private int width = 600;
-    private int height = 350;
+    private int height = 600;
     private static Application instance;
     public Application() {
         instance = this;
@@ -50,22 +50,14 @@ public class Application extends javafx.application.Application{
         stage = primaryStage;
         this.stage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("StartView.fxml"));
-        this.stage.setTitle("engPron");
+        this.stage.setTitle("Eng-Pron");
         this.stage.setScene(new Scene(root, width, height));
 
         stage.show();
     }
     public static void main(String ...arg) throws Exception{
 
-        configuration = new Configuration();
 
-        // Set path to acoustic model.
-        configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-        // Set path to dictionary.
-        configuration.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
-        // Set language model.
-        configuration.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
-        recognizer = new StreamSpeechRecognizer(configuration);
 
         launch(arg);
 
