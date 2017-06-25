@@ -30,6 +30,6 @@ public class Word
     @Override
     public String toString()
     {
-        return "ClassPojo [english = "+english+", polish = "+polish+"]";
+        return "polski: "+polish+" | english :"+english;
     }
 }

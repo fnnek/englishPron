@@ -29,7 +29,8 @@ public class Progress implements Initializable{
         for(int i = 0; i<lessons.size();i++) {
             System.out.println("Lesson id: "+lessons.get(i));
             int result = reader.getResultOfLesson(lessons.get(i));
-            Label label = new Label(lessons.get(i) + ": " + result+ "/20");
+
+            Label label = new Label(lessons.get(i) + ": " + result+ "/"+reader.getWords(String.valueOf(i+1),"english").size()*2);
             label.setFont(new Font("Arial", 16));
             if (result < 1){
                 label.setTextFill(Color.RED);

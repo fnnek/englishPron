@@ -297,4 +297,4 @@
         <word>
             <english>nine</english><polish>dziewięć</polish>
         </word>
-    </lesson></course>
+    </lesson><lesson id="9" lessonDescription="words" name="Lesson 9"><word><english>Sky</english><polish>Niebo</polish></word><word><english>River</english><polish>Rzeka</polish></word><word><english>Lake</english><polish>Jezioro</polish></word><word><english>Forest</english><polish>Las</polish></word><word><english>Meadow</english><polish>Łąka</polish></word></lesson></course>

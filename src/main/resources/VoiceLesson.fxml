@@ -13,34 +13,41 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane style="-fx-background: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VoiceLesson">
+<BorderPane style="-fx-background: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.112"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="VoiceLesson">
     <top>
-        <BorderPane style="-fx-background: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+        <BorderPane style="-fx-background: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.112"
+                    xmlns:fx="http://javafx.com/fxml/1">
             <left>
-                <Button onAction="#handleBackbtn" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Back to menu">
+                <Button onAction="#handleBackbtn" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF"
+                        text="Back to menu">
                     <BorderPane.margin>
-                        <Insets left="20.0" top="22.0" />
+                        <Insets left="20.0" top="22.0"/>
                     </BorderPane.margin>
-               <font>
-                  <Font name="Arial" size="13.0" />
-               </font></Button>
+                    <font>
+                        <Font name="Arial" size="13.0"/>
+                    </font>
+                </Button>
             </left>
             <right>
-                <VBox alignment="TOP_RIGHT" style="-fx-border-color: #F03C5F; -fx-border-radius: 10 10 10 10" BorderPane.alignment="TOP_RIGHT">
-                <Label fx:id="pointsLbl" style="-fx-text-fill: #F03C5F;" text="Points: 0/20" textAlignment="RIGHT">
-                  <font>
-                     <Font name="Arial" size="13.0" />
-                  </font></Label>
-                <Label fx:id="wordCountLbl" style="-fx-text-fill: #F03C5F;" text="Word: 1/10" textAlignment="RIGHT">
-                  <font>
-                     <Font name="Arial" size="13.0" />
-                  </font></Label>
-               <BorderPane.margin>
-                  <Insets right="20.0" top="10.0" />
-               </BorderPane.margin>
-               <padding>
-                  <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
-               </padding>
+                <VBox alignment="TOP_RIGHT" style="-fx-border-color: #F03C5F; -fx-border-radius: 10 10 10 10"
+                      BorderPane.alignment="TOP_RIGHT">
+                    <Label fx:id="pointsLbl" style="-fx-text-fill: #F03C5F;" text="Points: 0/20" textAlignment="RIGHT">
+                        <font>
+                            <Font name="Arial" size="13.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="wordCountLbl" style="-fx-text-fill: #F03C5F;" text="Word: 1/10" textAlignment="RIGHT">
+                        <font>
+                            <Font name="Arial" size="13.0"/>
+                        </font>
+                    </Label>
+                    <BorderPane.margin>
+                        <Insets right="20.0" top="10.0"/>
+                    </BorderPane.margin>
+                    <padding>
+                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0"/>
+                    </padding>
                 </VBox>
             </right>
         </BorderPane>
@@ -49,106 +56,139 @@
     <center>
         <GridPane alignment="BASELINE_CENTER" hgap="10" vgap="10">
             <columnConstraints>
-                <ColumnConstraints halignment="CENTER" />
-            <ColumnConstraints />
+                <ColumnConstraints halignment="CENTER"/>
+                <ColumnConstraints/>
             </columnConstraints>
             <BorderPane.margin>
-                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
             </BorderPane.margin>
             <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                <Label style="-fx-text-fill: #F03C5F;" text="Word: "><font><Font name="Arial" size="24.0" /></font></Label>
-                <Label fx:id="word" style="-fx-text-fill: #F03C5F;"> <font><Font name="Arial Bold" size="24.0" /></font></Label>
+                <Label style="-fx-text-fill: #F03C5F;" text="Word: ">
+                    <font>
+                        <Font name="Arial" size="24.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="word" style="-fx-text-fill: #F03C5F;">
+                    <font>
+                        <Font name="Arial Bold" size="24.0"/>
+                    </font>
+                </Label>
             </HBox>
 
-            <VBox alignment="CENTER" style="-fx-border-color: #FFB540; -fx-border-radius: 10 10 10 10; " GridPane.rowIndex="1">
+            <VBox alignment="CENTER" style="-fx-border-color: #FFB540; -fx-border-radius: 10 10 10 10; "
+                  GridPane.rowIndex="1">
                 <HBox alignment="CENTER">
-                    <Button fx:id="startB" onAction="#handleStartButton" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Start">
-                  <HBox.margin>
-                     <Insets bottom="10.0" />
-                  </HBox.margin>
-                  <font>
-                     <Font name="Arial" size="13.0" />
-                  </font></Button>
+                    <Button fx:id="startB" onAction="#handleStartButton"
+                            style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Start">
+                        <HBox.margin>
+                            <Insets bottom="10.0"/>
+                        </HBox.margin>
+                        <font>
+                            <Font name="Arial" size="13.0"/>
+                        </font>
+                    </Button>
 
-                    <Button fx:id="stopB" disable="true" onAction="#handleStopButton" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Stop">
-                    <HBox.margin>
-                        <Insets bottom="10.0" left="20.0" />
-                    </HBox.margin>
-                  <font>
-                     <Font name="Arial" size="13.0" />
-                  </font></Button>
+                    <Button fx:id="stopB" disable="true" onAction="#handleStopButton"
+                            style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Stop">
+                        <HBox.margin>
+                            <Insets bottom="10.0" left="20.0"/>
+                        </HBox.margin>
+                        <font>
+                            <Font name="Arial" size="13.0"/>
+                        </font>
+                    </Button>
                 </HBox>
                 <Text fx:id="recognizedText" text="Click start to record your english pronunciation of ">
-               <font>
-                  <Font name="Arial Bold" size="13.0" />
-               </font></Text>
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-            <padding>
-               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-            </padding>
+                    <font>
+                        <Font name="Arial Bold" size="13.0"/>
+                    </font>
+                </Text>
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <padding>
+                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                </padding>
             </VBox>
             <Label fx:id="recordedWordRightLbl" text="" GridPane.columnIndex="1" GridPane.rowIndex="1">
-            <font>
-               <Font name="Arial" size="13.0" />
-            </font></Label>
+                <font>
+                    <Font name="Arial" size="13.0"/>
+                </font>
+            </Label>
 
 
-            <HBox alignment="CENTER" style="-fx-border-color: #FFB540; -fx-border-radius: 10 10 10 10;" GridPane.rowIndex="3">
+            <HBox alignment="CENTER" style="-fx-border-color: #FFB540; -fx-border-radius: 10 10 10 10;"
+                  GridPane.rowIndex="3">
                 <Label text="Type it: ">
-               <font>
-                  <Font name="Arial" size="13.0" />
-               </font></Label>
+                    <font>
+                        <Font name="Arial" size="13.0"/>
+                    </font>
+                </Label>
                 <TextField fx:id="wordField" minWidth="250.0">
-               <font>
-                  <Font name="Arial" size="13.0" />
-               </font></TextField>
-            <padding>
-               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-            </padding>
+                    <font>
+                        <Font name="Arial" size="13.0"/>
+                    </font>
+                </TextField>
+                <padding>
+                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                </padding>
             </HBox>
             <Label fx:id="typedWordRightLbl" text="" GridPane.columnIndex="1" GridPane.rowIndex="3">
-            <font>
-               <Font name="Arial" size="13.0" />
-            </font></Label>
-            <Button fx:id="checkbtn" maxHeight="80.0" maxWidth="300.0" minHeight="50.0" onAction="#handleCheck" style="-fx-background-color: #F03C5F; -fx-text-fill:#FFFFFF" text="Check your answers" GridPane.rowIndex="5">
-            <font>
-               <Font name="Arial" size="13.0" />
-            </font></Button>
+                <font>
+                    <Font name="Arial" size="13.0"/>
+                </font>
+            </Label>
+            <Label fx:id="correctAnswer"  GridPane.rowIndex="4">
+                <font>
+                    <Font name="Arial" size="13.0"/>
+                </font>
+            </Label>
+            <Button fx:id="checkbtn" maxHeight="80.0" maxWidth="300.0" minHeight="50.0" onAction="#handleCheck"
+                    style="-fx-background-color: #F03C5F; -fx-text-fill:#FFFFFF" text="Check your answers"
+                    GridPane.rowIndex="5">
+                <font>
+                    <Font name="Arial" size="13.0"/>
+                </font>
+            </Button>
 
-            <HBox alignment="CENTER" style="-fx-border-color: #FFB540; -fx-border-radius: 10 10 10 10" GridPane.rowIndex="8">
-            <Button fx:id="previousWord" disable="true" minHeight="40.0" minWidth="150.0" onAction="#handlePreviousWordButton" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Previous word">
-               <font>
-                  <Font name="Arial" size="13.0" />
-               </font></Button>
+            <HBox alignment="CENTER" style="-fx-border-color: #FFB540; -fx-border-radius: 10 10 10 10"
+                  GridPane.rowIndex="8">
+                <Button fx:id="tryAgain" onAction="#handleTryAgain" disable="true" minHeight="40.0" minWidth="150.0" visible="false"
+                        style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Try Again">
+                    <font>
+                        <Font name="Arial" size="13.0"/>
+                    </font>
+                </Button>
 
-            <Button fx:id="nextWord" minHeight="40.0" minWidth="150.0" onAction="#handleNextWordButton" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF" text="Next word">
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="Arial" size="13.0" />
-               </font></Button>
-            <GridPane.margin>
-               <Insets />
-            </GridPane.margin>
-            <padding>
-               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-            </padding>
+                <Button fx:id="nextWord" minHeight="40.0" minWidth="150.0" disable="true"
+                        onAction="#handleNextWordButton" style="-fx-background-color: #4CC8A5; -fx-text-fill:#FFFFFF"
+                        text="Next word">
+                    <HBox.margin>
+                        <Insets left="20.0"/>
+                    </HBox.margin>
+                    <font>
+                        <Font name="Arial" size="13.0"/>
+                    </font>
+                </Button>
+                <GridPane.margin>
+                    <Insets/>
+                </GridPane.margin>
+                <padding>
+                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                </padding>
 
             </HBox>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
 
 
         </GridPane>

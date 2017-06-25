@@ -3,12 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -22,25 +21,29 @@
                 <VBox.margin>
                     <Insets bottom="15.0" />
                 </VBox.margin>
-            <font>
-               <Font name="Arial" size="13.0" />
-            </font></Button>
+                <font>
+                    <Font name="Arial" size="13.0" />
+                </font>
+            </Button>
             <Label style="-fx-text-fill:#4CC8A5" text="Type in words in polish and their translations in english in order to create a new lesson">
-            <font>
-               <Font name="Arial" size="13.0" />
-            </font></Label>
+                <font>
+                    <Font name="Arial" size="13.0" />
+                </font>
+            </Label>
             <HBox>
                 <Label style="-fx-text-fill:#F03C5F" text="Lesson description: ">
                     <HBox.margin>
                         <Insets top="5.0" />
                     </HBox.margin>
-               <font>
-                  <Font name="Arial" size="13.0" />
-               </font></Label>
+                    <font>
+                        <Font name="Arial" size="13.0" />
+                    </font>
+                </Label>
                 <TextField fx:id="lessonDescription" minWidth="300.0" promptText="Describe words in this lesson">
-               <font>
-                  <Font name="Arial" size="13.0" />
-               </font></TextField>
+                    <font>
+                        <Font name="Arial" size="13.0" />
+                    </font>
+                </TextField>
                 <VBox.margin>
                     <Insets top="10.0" />
                 </VBox.margin>
@@ -51,261 +54,67 @@
         </VBox>
     </top>
     <center>
-        <GridPane hgap="20.0" BorderPane.alignment="CENTER">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-                    <children>
-                        <Label alignment="TOP_RIGHT" maxWidth="20.0" minWidth="20.0" text="1:">
-                     <font>
-                        <Font name="Arial" size="13.0" />
-                     </font></Label>
-                        <TextField fx:id="answer1pl" promptText="słowo po polsku">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </HBox.margin>
-                     <font>
-                        <Font name="Arial" size="13.0" />
-                     </font>
-                        </TextField>
-                        <TextField fx:id="answer1en" alignment="TOP_LEFT" promptText="word in english">
-                     <font>
-                        <Font name="Arial" size="13.0" />
-                     </font></TextField>
-                    </children>
-                </HBox>
 
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                    <children>
-                        <Label alignment="TOP_RIGHT" maxWidth="20.0" minWidth="20.0" text="2:">
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="answer2pl" promptText="słowo po polsku">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="answer2en" alignment="TOP_LEFT" promptText="word in english">
-                        <font>
-                            <Font name="Arial" size="13.0" />
-                        </font></TextField>
-                    </children>
-                </HBox>
+<VBox>
+        <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="TOP">
 
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                    <children>
-                        <Label alignment="TOP_RIGHT" maxWidth="20.0" minWidth="20.0" text="3:">
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="answer3pl" promptText="słowo po polsku">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </TextField>
+            <TextField fx:id="answer1pl" promptText="słowo po polsku">
+                <HBox.margin>
+                    <Insets left="5.0" right="5.0" top="20.0" />
+                </HBox.margin>
+                <font>
+                    <Font name="Arial" size="13.0" />
+                </font>
+            </TextField>
+            <TextField fx:id="answer1en" alignment="TOP_LEFT" promptText="word in english">
+                <font>
+                    <Font name="Arial" size="13.0" />
+                </font>
+            <HBox.margin>
+               <Insets top="20.0" />
+            </HBox.margin>
+            </TextField>
+            <Button contentDisplay="CENTER" maxHeight="0.0" maxWidth="0.0" onAction="#handleAddWordToList" prefHeight="0.0" prefWidth="29.0" style="-fx-background-color: #F03C5F; -fx-text-fill:#FFFFFF" text="+" wrapText="true" BorderPane.alignment="CENTER">
+                <BorderPane.margin>
+                    <Insets bottom="20.0" />
+                </BorderPane.margin>
+                <font>
+                    <Font name="Arial" size="13.0" />
+                </font>
+            <HBox.margin>
+               <Insets left="5.0" top="20.0" />
+            </HBox.margin>
+            </Button>
 
-                        <TextField fx:id="answer3en" alignment="TOP_LEFT" promptText="word in english">
-                        <font>
-                            <Font name="Arial" size="13.0" />
-                        </font>
-                        </TextField>
-                    </children>
-                </HBox>
+               <HBox alignment="BOTTOM_CENTER" />
 
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                    <children>
-                        <Label alignment="TOP_RIGHT" maxWidth="20.0" minWidth="20.0" text="4:">
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="answer4pl" promptText="słowo po polsku">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="answer4en" alignment="TOP_LEFT" promptText="word in english">
-                        <font>
-                            <Font name="Arial" size="13.0" />
-                        </font>
-                        </TextField>
-                    </children>
-                </HBox>
-
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                    <children>
-                        <Label alignment="TOP_RIGHT" maxWidth="20.0" minWidth="20.0" text="5:">
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="answer5pl" promptText="słowo po polsku">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="answer5en" alignment="TOP_LEFT" promptText="word in english">
-                        <font>
-                            <Font name="Arial" size="13.0" />
-                        </font>
-                        </TextField>
-                    </children>
-                </HBox>
-
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                    <children>
-                        <Label alignment="TOP_RIGHT" maxWidth="20.0" minWidth="20.0" text="6:">
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="answer6pl" promptText="słowo po polsku">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="answer6en" promptText="word in english">
-                        <font>
-                            <Font name="Arial" size="13.0" />
-                        </font>
-                        </TextField>
-                    </children>
-                </HBox>
-
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <children>
-                        <Label alignment="TOP_RIGHT" maxWidth="20.0" minWidth="20.0" text="7:">
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="answer7pl" promptText="słowo po polsku">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="answer7en" promptText="word in english">
-                        <font>
-                            <Font name="Arial" size="13.0" />
-                        </font>
-                        </TextField>
-                    </children>
-                </HBox>
-
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                    <children>
-                        <Label alignment="TOP_RIGHT" maxWidth="20.0" minWidth="20.0" text="8:">
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="answer8pl" promptText="słowo po polsku">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="answer8en" promptText="word in english">
-                        <font>
-                            <Font name="Arial" size="13.0" />
-                        </font>
-                        </TextField>
-                    </children>
-                </HBox>
-
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                    <children>
-                        <Label alignment="TOP_RIGHT" maxWidth="20.0" minWidth="20.0" text="9:" textAlignment="RIGHT">
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="answer9pl" promptText="słowo po polsku">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="answer9en" promptText="word in english">
-                        <font>
-                            <Font name="Arial" size="13.0" />
-                        </font>
-                        </TextField>
-                    </children>
-                </HBox>
-
-                <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                    <children>
-                        <Label maxWidth="20.0" minWidth="20.0" text="10:">
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="answer10pl" maxWidth="140.0" minWidth="80.0" promptText="słowo po polsku">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Arial" size="13.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="answer10en" maxWidth="140.0" promptText="word in english">
-                        <font>
-                            <Font name="Arial" size="13.0" />
-                        </font>
-                        </TextField>
-                    </children>
-                </HBox>
-
-            </children>
-            <BorderPane.margin>
-                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
-            </BorderPane.margin>
-        </GridPane>
+        </HBox>
+          <ListView fx:id="listOfWords" prefHeight="300.0" prefWidth="248.0">
+            <VBox.margin>
+               <Insets left="70.0" right="70.0" top="10.0" />
+            </VBox.margin>
+         </ListView>
+    <Button alignment="CENTER" style="-fx-background-color: #F03C5F; -fx-text-fill:#FFFFFF" text="remove word" textAlignment="CENTER"
+            onAction="#handleRemoveWord">
+            <VBox.margin>
+               <Insets bottom="10.0" left="400.0" top="10.0" />
+            </VBox.margin></Button>
+</VBox>
     </center>
+
+    <BorderPane.margin>
+        <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+    </BorderPane.margin>
+
     <bottom>
         <Button contentDisplay="CENTER" maxHeight="80.0" maxWidth="300.0" minHeight="50.0" onAction="#handleSaveLessonAction" style="-fx-background-color: #F03C5F; -fx-text-fill:#FFFFFF" text="Save" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                 <Insets bottom="20.0" />
             </BorderPane.margin>
-         <font>
-            <Font name="Arial" size="13.0" />
-         </font></Button>
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Button>
     </bottom>
 
 </BorderPane>

@@ -48,8 +48,7 @@ public class VoiceLesson implements Initializable {
     private Button startB;
     @FXML
     private Button stopB;
-    @FXML
-    private Button previousWord;
+
     @FXML
     private Button nextWord;
     @FXML
@@ -68,6 +67,10 @@ public class VoiceLesson implements Initializable {
     private Label pointsLbl;
     @FXML
     private Label wordCountLbl;
+    @FXML
+    private Button tryAgain;
+    @FXML
+    private Label correctAnswer;
 
     public VoiceLesson() {
         try {
@@ -93,17 +96,19 @@ public class VoiceLesson implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        previousWord.setDisable(true);
+
         //word.setText("Word #" + actualWord);
         word.setText(polish.get(actualWord));
         recognizedText.setText("Click start to record your english pronunciation of \"" + word.getText() +"\"");
         wordField.setPromptText("Type in \""+word.getText() + "\" in english");
         list = new ArrayList<Boolean>();
 
+
         for(int i = 0; i<10;i++) {
             list.add(false);
         }
         Application.stage.setTitle("Eng-Pron: Voice lesson");
+        wordCountLbl.setText("Word: "+wordCount+"/"+english.size());
 
 
     }
@@ -115,7 +120,7 @@ public class VoiceLesson implements Initializable {
         stopB.setDisable(false);
         checkbtn.setDisable(true);
         nextWord.setDisable(true);
-        previousWord.setDisable(true);
+
         captureAudio();
 
     }
@@ -131,14 +136,14 @@ public class VoiceLesson implements Initializable {
         startB.setDisable(false);
         stopB.setDisable(true);
         if (actualWord > 1){
-            previousWord.setDisable(false);
+
         }
-        if (actualWord <8){
+        if (actualWord <english.size()-2){
             nextWord.setDisable(false);
         }
     }
 
-    @FXML
+    /*@FXML
     protected void handlePreviousWordButton() {
         nextWord.setDisable(false);
         if (actualWord > 1) {
@@ -162,16 +167,18 @@ public class VoiceLesson implements Initializable {
 //        recordedWordRightLbl.setText("✓");
 //        recordedWordRightLbl.setVisible(actualBool);
         checkbtn.setDisable(actualBool);
-    }
+    }*/
 
     @FXML
     protected void handleNextWordButton() {
-        previousWord.setDisable(false);
-        if (actualWord < 8) {
+
+        if (actualWord < english.size()-2) {
             actualWord++;
+            nextWord.setDisable(true);
         } else {
             actualWord++;
             nextWord.setDisable(true);
+            tryAgain.setVisible(true);
         }
         wordCount++;
         wordCountLbl.setText("Word: "+wordCount+"/"+english.size());
@@ -187,12 +194,14 @@ public class VoiceLesson implements Initializable {
         typedWordRightLbl.setText("");
        // recordedWordRightLbl.setText("✓");
        // recordedWordRightLbl.setVisible(actualBool);
-        checkbtn.setDisable(actualBool);
+        checkbtn.setDisable(false);
+        correctAnswer.setText("");
     }
 
     @FXML
     protected void handleCheck(){
 
+        checkbtn.setDisable(true);
         System.out.println(english.get(actualWord));
         System.out.println(polish.get(actualWord));
         System.out.println(wordField.getPromptText());
@@ -236,6 +245,39 @@ public class VoiceLesson implements Initializable {
             typedWordRightLbl.setText("X");
             typedWordRightLbl.setFont(Font.font ("Verdana", 20));
         }
+        if(actualWord < english.size()-1)
+            nextWord.setDisable(false);
+        else
+            tryAgain.setDisable(false);
+
+        correctAnswer.setText("Correct answer: " + english.get(wordCount-1));
+
+
+
+    }
+    @FXML
+    protected void handleTryAgain(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Try again");
+        alert.setHeaderText("Do you want to try again?");
+        alert.setContentText("Your actual result will be cleared");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            actualWord = 0;
+            wordCount = 1;
+            points = 0;
+            word.setText(polish.get(actualWord));
+            correctAnswer.setText("");
+            wordCountLbl.setText("Word: "+wordCount+"/"+english.size());
+            tryAgain.setDisable(true);
+            tryAgain.setVisible(false);
+            pointsLbl.setText("Points: "+points+"/"+english.size()*2);
+            checkbtn.setDisable(false);
+            recordedWordRightLbl.setText("");
+            typedWordRightLbl.setText("");
+            wordField.setPromptText("Type in \""+word.getText() + "\" in english");
+        }
     }
 
 
@@ -255,6 +297,12 @@ public class VoiceLesson implements Initializable {
                 new SceneChanger().replaceSceneContent("StartView.fxml",event);
             } catch (Exception e) {
                 System.out.println(e);
+
+                /*Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                alert2.setTitle("Error");
+                alert2.setHeaderText("Application couldn't save data to file.");
+                alert2.setContentText("If you are using Windows 7/8/10, you probably need to run this app with administrator rigths (check out documentation) ");
+                alert2.show();*/
             }
         } else {
             try{

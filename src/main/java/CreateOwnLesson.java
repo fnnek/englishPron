@@ -1,6 +1,9 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import javafx.event.ActionEvent;
@@ -9,6 +12,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import javax.xml.transform.TransformerException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,74 +24,66 @@ import java.util.ResourceBundle;
 public class CreateOwnLesson implements Initializable {
 
     @FXML private TextField answer1pl;
-    @FXML private TextField answer2pl;
-    @FXML private TextField answer3pl;
-    @FXML private TextField answer4pl;
-    @FXML private TextField answer5pl;
-    @FXML private TextField answer6pl;
-    @FXML private TextField answer7pl;
-    @FXML private TextField answer8pl;
-    @FXML private TextField answer9pl;
-    @FXML private TextField answer10pl;
+
     @FXML private TextField answer1en;
-    @FXML private TextField answer2en;
-    @FXML private TextField answer3en;
-    @FXML private TextField answer4en;
-    @FXML private TextField answer5en;
-    @FXML private TextField answer6en;
-    @FXML private TextField answer7en;
-    @FXML private TextField answer8en;
-    @FXML private TextField answer9en;
-    @FXML private TextField answer10en;
+
     @FXML private TextField lessonDescription;
+    @FXML private ListView<Word> listOfWords = new ListView<>();
+
 
     List<String> polishWords = new ArrayList<String>();
     List<String> englishWords = new ArrayList<String>();
+    List<Word> words = new ArrayList<>();
+
+    ObservableList<Word> data = FXCollections.observableArrayList();
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        listOfWords.setItems(data);
+        //listOfWords.setCellFactory(wordListView -> new WordListViewCell());
 
 
     }
-    @FXML private void handleSaveLessonAction(ActionEvent actionEvent) throws TransformerException {
-        polishWords.add(answer1pl.getText());
-        polishWords.add(answer2pl.getText());
-        polishWords.add(answer3pl.getText());
-        polishWords.add(answer4pl.getText());
-        polishWords.add(answer5pl.getText());
-        polishWords.add(answer6pl.getText());
-        polishWords.add(answer7pl.getText());
-        polishWords.add(answer8pl.getText());
-        polishWords.add(answer9pl.getText());
-        polishWords.add(answer10pl.getText());
-        englishWords.add(answer1en.getText());
-        englishWords.add(answer2en.getText());
-        englishWords.add(answer3en.getText());
-        englishWords.add(answer4en.getText());
-        englishWords.add(answer5en.getText());
-        englishWords.add(answer6en.getText());
-        englishWords.add(answer7en.getText());
-        englishWords.add(answer8en.getText());
-        englishWords.add(answer9en.getText());
-        englishWords.add(answer10en.getText());
-        boolean polishWordsTyped = true;
-        boolean englishWordsTyped = true;
-        for(int i=0;i<polishWords.size();i++){
-            if (polishWords.get(i).length() < 1){
-                polishWordsTyped = false;
-                break;
-                // System.out.println("Nie wszystkie polskie slowa zostaly wprowadzone");
-            }
-        }
-        for(int i=0;i<englishWords.size();i++){
-            if (englishWords.get(i).length() < 1){
-                englishWordsTyped = false;
-                break;
-                // System.out.println("Nie wszystkie angielskie slowa zostaly wprowadzone");
-            }
-        }
 
-        if(polishWordsTyped && englishWordsTyped){
+    @FXML private void handleAddWordToList() {
+       // polishWords.add(answer1pl.getText());
+
+       // englishWords.add(answer1en.getText());
+        String polish = answer1pl.getText();
+        String english = answer1en.getText();
+        answer1en.clear();
+        answer1pl.clear();
+        Word word = new Word();
+        word.setPolish(polish);
+        word.setEnglish(english);
+        System.out.println("polish: " + polish);
+        System.out.println("english: " + english);
+        data.add(word);
+
+        //data = FXCollections.observableArrayList(words);
+        listOfWords.setItems(data);
+        System.out.println("pętla");
+        for(int i = 0;i<data.size();i++) {
+            System.out.println(data.get(i).getPolish());
+        }
+    }
+
+    @FXML private void handleRemoveWord() {
+        try {
+            int index = listOfWords.getSelectionModel().getSelectedIndex();
+            System.out.println("zaznaczone " + index);
+            listOfWords.getItems().remove(index);
+        }catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText("You have to choose item from list!");
+
+
+            alert.showAndWait();
+        }
+    }
+    @FXML private void handleSaveLessonAction(ActionEvent actionEvent) throws TransformerException {
+
+        if(listOfWords.getItems().size()>0){
             //get xmlreader object
             XmlReader fileReader = new XmlReader();
             int lastID = Integer.parseInt(fileReader.getLastLessonID());
@@ -113,12 +109,12 @@ public class CreateOwnLesson implements Initializable {
             attrDesc.setValue(lessonDescription.getText());
             lesson.setAttributeNode(attrDesc);
 
-            for (int i=0;i<polishWords.size();i++) {
+            for (int i=0;i<listOfWords.getItems().size();i++) {
                 Element word = document.createElement("word");
                 Element firstEn = document.createElement("english");
-                firstEn.appendChild(document.createTextNode(englishWords.get(i)));
+                firstEn.appendChild(document.createTextNode(listOfWords.getItems().get(i).getEnglish()));
                 Element firstPl = document.createElement("polish");
-                firstPl.appendChild(document.createTextNode(polishWords.get(i)));
+                firstPl.appendChild(document.createTextNode(listOfWords.getItems().get(i).getPolish()));
                 word.appendChild(firstEn);
                 word.appendChild(firstPl);
                 lesson.appendChild(word);
@@ -128,9 +124,9 @@ public class CreateOwnLesson implements Initializable {
         }else{
             //alert
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error while saving");
+            alert.setTitle("Error");
             alert.setHeaderText("Cannot save this lesson");
-            alert.setContentText("You have to provide all 10 words and their translations in order to save the lesson.");
+            alert.setContentText("You have to add at least one word!");
 
             alert.showAndWait();
         }

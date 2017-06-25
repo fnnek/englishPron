@@ -1,3 +1,4 @@
+import javafx.scene.control.Alert;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -123,21 +124,6 @@ public class XmlReader {
         }
 
 
-       /* for (int i = 0;i<nodeList.getLength();i++) {
-            Node node = nodeList.item(i);
-            Element element = (Element) node;
-            String s = element.getAttribute("name");
-            String id = element.getAttribute("id");
-            Lesson lesson = new Lesson();
-            lesson.setId(id);
-            lesson.setName(s);
-            list.add(s);
-            System.out.println("-----------------");
-            System.out.println(list.get(i));
-            System.out.println("-----------------");
-            //nodeList.item(i).getNodeValue()
-        }*/
-
         return list;
     }
 
@@ -163,21 +149,6 @@ public class XmlReader {
         }
 
 
-       /* for (int i = 0;i<nodeList.getLength();i++) {
-            Node node = nodeList.item(i);
-            Element element = (Element) node;
-            String s = element.getAttribute("name");
-            String id = element.getAttribute("id");
-            Lesson lesson = new Lesson();
-            lesson.setId(id);
-            lesson.setName(s);
-            list.add(s);
-            System.out.println("-----------------");
-            System.out.println(list.get(i));
-            System.out.println("-----------------");
-            //nodeList.item(i).getNodeValue()
-        }*/
-
         return list;
     }
 
@@ -193,7 +164,6 @@ public class XmlReader {
                 node = nodeList.item(i);
             }
         }
-        // node = nodeList.item(0);
 
         Element element = (Element) node;
 
@@ -394,6 +364,7 @@ public class XmlReader {
             transformer.transform(domSource, streamResult);
         } catch (Exception e) {
             System.out.println(e);
+            showAlert();
         }
     }
 
@@ -406,6 +377,7 @@ public class XmlReader {
             transformer = transformerFactory.newTransformer();
         } catch (TransformerConfigurationException e) {
             e.printStackTrace();
+            showAlert();
         }
         DOMSource domSource = new DOMSource(document);
         StreamResult streamResult = new StreamResult(new File("shema.xml"));
@@ -414,8 +386,17 @@ public class XmlReader {
             transformer.transform(domSource, streamResult);
         } catch (TransformerException e) {
             e.printStackTrace();
+            showAlert();
         }
         System.out.println("Done creating XML File");
+    }
+
+    private void showAlert() {
+        Alert alert2 = new Alert(Alert.AlertType.ERROR);
+        alert2.setTitle("Error");
+        alert2.setHeaderText("Application couldn't save data to file.");
+        alert2.setContentText("If you are using Windows 7/8/10, you probably need to run this app with administrator rights (check out the documentation) ");
+        alert2.show();
     }
 
 }
