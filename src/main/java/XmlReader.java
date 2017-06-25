@@ -391,6 +391,27 @@ public class XmlReader {
         System.out.println("Done creating XML File");
     }
 
+    public int getNumberOfWords(String lessonID){
+        Document document = getDocument("shema.xml");
+        Element root = document.getDocumentElement();
+        int ile;
+
+        NodeList nodeList = root.getElementsByTagName("lesson");
+        Node node = null;
+        for(int i = 0; i<nodeList.getLength();i++) {
+            if(nodeList.item(i).getAttributes().getNamedItem("id").getNodeValue().equals(lessonID)) {
+                node = nodeList.item(i);
+            }
+        }
+
+        Element element = (Element) node;
+
+        NodeList word = element.getElementsByTagName("word");
+
+
+        return word.getLength();
+    }
+
     private void showAlert() {
         Alert alert2 = new Alert(Alert.AlertType.ERROR);
         alert2.setTitle("Error");

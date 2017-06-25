@@ -48,23 +48,30 @@ public class CreateOwnLesson implements Initializable {
        // polishWords.add(answer1pl.getText());
 
        // englishWords.add(answer1en.getText());
-        String polish = answer1pl.getText();
-        String english = answer1en.getText();
-        answer1en.clear();
-        answer1pl.clear();
-        Word word = new Word();
-        word.setPolish(polish);
-        word.setEnglish(english);
-        System.out.println("polish: " + polish);
-        System.out.println("english: " + english);
-        data.add(word);
+        if(answer1pl.getText().length() > 0 && answer1en.getText().length() > 0) {
+            String polish = answer1pl.getText();
+            String english = answer1en.getText();
+            answer1en.clear();
+            answer1pl.clear();
+            Word word = new Word();
+            word.setPolish(polish);
+            word.setEnglish(english);
+            System.out.println("polish: " + polish);
+            System.out.println("english: " + english);
+            data.add(word);
 
-        //data = FXCollections.observableArrayList(words);
-        listOfWords.setItems(data);
-        System.out.println("pętla");
-        for(int i = 0;i<data.size();i++) {
-            System.out.println(data.get(i).getPolish());
+            //data = FXCollections.observableArrayList(words);
+            listOfWords.setItems(data);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText("You have to fill both text fields!");
+
+
+            alert.showAndWait();
         }
+
+
     }
 
     @FXML private void handleRemoveWord() {

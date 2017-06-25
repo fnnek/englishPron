@@ -5,11 +5,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by fnnek on 16.06.17.
@@ -44,17 +46,26 @@ public class Progress implements Initializable{
        XmlReader reader = new XmlReader();
        System.out.println("Removing lesson results");
        reader.clearLessonResult(Globals.userName);
+       final AtomicInteger count = new AtomicInteger();
+
        progressPane.getChildren().forEach((node) -> {
+
+        int id = count.incrementAndGet()-1;
            if(node.getClass()==Label.class){
                Label lbl = (Label)node;
                if(lbl != topLabel){
+
                    String s = lbl.getText();
                    int startIndex = s.indexOf(":");
-                   String newString = s.substring(0, startIndex+1) + " 0/20";
+                   String newString = s.substring(0, startIndex+1) + " 0/" + reader.getNumberOfWords(String.valueOf(id))*2;
 
                    lbl.setText(newString);
+                   lbl.setTextFill(Color.RED);
+
                }
            }
+
+
 
        });
    }
