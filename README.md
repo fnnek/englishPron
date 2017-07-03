@@ -4,7 +4,9 @@ a college project in java that helps in learning English language by checking pr
 Authors:
 
 Mariusz Bozek 
-Maciej Chrzastek
+
+Maciej Chrzastek (@repoguy)
+
 Krystian Chryn 
 
 Teacher:
